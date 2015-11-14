@@ -1,5 +1,5 @@
 var triggers = require('./recipeController')
-// var actions = require('./actionController')
+var actions = require('./actionController')
 var db = require('../db');
 
 module.exports = {
@@ -13,7 +13,11 @@ module.exports = {
 						return triggers[trigger.name](data, trigger.args)
 					})
 
-					// if (triggersMatched) actions[recipe.action.name](data, trigger.args, action)
+					if (triggersMatched) {
+						recipe.action.forEach(action => {
+							actions[action.name](data, action.args)
+						})
+					}
                 })
             })
             .catch(function (e) {
