@@ -10,6 +10,7 @@ module.exports = {
 		db.getUser(req.params.userId)
             .then(function (user) {
                 res.locals.data = user.recipes
+                next()
             })
 	},
 
