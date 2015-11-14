@@ -1,5 +1,5 @@
 $susy: (
-    container: 1024px,
+    container: 768px,
     container-position: center,
     columns: 12,
     gutters: 0,
@@ -12,6 +12,7 @@ $susy: (
 .container {
     @include container;
     padding: 20px 0;
+    border: 1px solid black;    
 }
 
 $column-count: 12;

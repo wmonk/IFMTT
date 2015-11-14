@@ -1,2 +1,339 @@
 @import 'helpers';
 @import 'susy';
+
+
+/*
+
+VARS
+
+*/
+
+// measures
+$baseLength: 20px;
+$gridColumnsNumber: 12;
+$baseFontSize: 16px;
+
+// colours
+$colorPrimary: #333;
+$color-blue: #1E788C;
+$color-dark-blue: #14233C;
+$color-green: #9ABDA9;
+$color-brown: #EAD19F;
+$color-pink: #E64B5F;
+
+// type
+$baseFontFamily: georgia, serif;
+$secondaryFontFamily: Helvetica, Arial, sans-serif;
+
+$colorLink: $color-pink;
+
+$borderStandard: 1px solid $color-blue;
+
+body {
+	background-color: $color-pink;
+}
+
+
+/* NOTES:
+
+.w-Cols - provides block having width (cols / 12) * 100%
+.c-Cols - provides block having width for Cols span of 12 (that includes gutter = $baseLength)
+.m-[t/b/l/r]  - standard margin
+.p-[t/b/l/r]  - standard padding
+.ratio-[w]-[h] - ratio container, it requires child with ratio class
+.b-[t/b/l/r]  - standard border
+*/
+
+
+* {
+  box-sizing:border-box;
+}
+
+
+.w-1, .w-2, .w-3, .w-4, .w-5, .w-6, .w-7, .w-8, .w-9, .w-10, .w-11, .w-12,
+.c-1, .c-2, .c-3, .c-4, .c-5, .c-6, .c-7, .c-8, .c-9, .c-10, .c-11, .c-12,
+.c-1-05, .c-2-05, .c-3-05, .c-4-05, .c-5-05, .c-6-05, .c-7-05, .c-8-05, .c-9-05, .c-10-05, .c-11-05, .c-12-05 {
+  display: inline-block;
+  vertical-align: top;
+}
+
+@for $i from 1 through $gridColumnsNumber {
+  .w-#{$i} {
+    width: 100% * $i/$gridColumnsNumber;
+  }
+}
+
+@for $i from 1 through $gridColumnsNumber {
+  .c-#{$i} {
+    width: calc((99.5% -  #{$baseLength} * #{($gridColumnsNumber/$i - 1)}) * #{($i / $gridColumnsNumber)});
+  }
+
+  .c-#{$i}-05 {
+    width: calc((99.5% -  #{($baseLength/2)} * #{($gridColumnsNumber/$i - 1)}) * #{($i / $gridColumnsNumber)});
+  }
+}
+
+
+// standard margins
+.m-t {
+   margin-top: $baseLength;
+}
+
+.m-t-05 {
+   margin-top: 0.5*$baseLength;
+}
+
+.m-t-0 {
+  margin-top: 0 !important;
+}
+
+.m-b, .c-1, .c-2, .c-3, .c-4, .c-5, .c-6, .c-7, .c-8, .c-9, .c-10, .c-11, .c-12 {
+   margin-bottom: $baseLength;
+}
+
+.m-b-05{
+   margin-bottom: 0.5*$baseLength;
+}
+
+.m-b-0 {
+  margin-bottom: 0 !important;
+}
+
+.m-l {
+   margin-left: $baseLength;
+}
+
+.m-l-05{
+   margin-left: 0.5*$baseLength;
+}
+
+.m-t-0 {
+  margin-left: 0 !important;
+}
+
+.m-r, .c-1, .c-2, .c-3, .c-4, .c-5, .c-6, .c-7, .c-8, .c-9, .c-10, .c-11, .c-12 {
+   margin-right: $baseLength;
+}
+
+.m-r-0 {
+  margin-right: 0 !important;
+}
+
+.m-r-05, .c-1-05, .c-2-05, .c-3-05, .c-4-05, .c-5-05, .c-6-05, .c-7-05, .c-8-05, .c-9-05, .c-10-05, .c-11-05, .c-12-05 {
+   margin-right: 0.5*$baseLength;
+}
+
+// standard paddings
+.p-t {
+   padding-top: $baseLength;
+}
+
+.p-t-05 {
+   padding-top: 0.5*$baseLength;
+}
+
+.p-t-0 {
+  padding-top: 0 !important;
+}
+
+.p-b {
+   padding-bottom: $baseLength;
+}
+
+.p-b-05 {
+   padding-bottom: 0.5*$baseLength;
+}
+
+.p-b-0 {
+  padding-bottom: 0 !important;
+}
+
+.p-l {
+   padding-left: $baseLength ;
+}
+
+.p-l-05 {
+   padding-left: 0.5*$baseLength ;
+}
+
+.p-l-0 {
+  padding-left: 0 !important;
+}
+
+.p-r {
+   padding-right: $baseLength ;
+}
+
+.p-r-05 {
+   padding-right: 0.5*$baseLength ;
+}
+
+.p-r-0 {
+  padding-right: 0 ;
+}
+.p-0 {
+  padding: 0 !important;
+}
+
+// standard borders
+.b-t { border-top: $borderStandard }
+.b-b { border-bottom: $borderStandard }
+.b-l { border-left: $borderStandard }
+.b-r { border-right: $borderStandard }
+
+.b-0 {
+  border: none !important;
+}
+
+.b-curved {
+  border-radius: 3px;
+}
+
+// ratios: markup needed is like this: <div class="ratio-1-2"><img class="ratio" /></div>
+.ratio-1-1, .ratio-1-2, .ratio-2-1, .ratio-3-1, .ratio-4-1, .ratio-5-1, .ratio-10-3 {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+  }
+  > .ratio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+  }
+}
+
+.ratio-1-1:before {padding-top: 1 * 100%;  }
+.ratio-1-2:before {padding-top: 2 * 100%;  }
+.ratio-2-1:before {padding-top: 1/2 * 100%;  }
+.ratio-3-1:before {padding-top: 1/3 * 100%;  }
+.ratio-4-1:before {padding-top: 1/4 * 100%;  }
+.ratio-5-1:before {padding-top: 1/5 * 100%;  }
+.ratio-10-3:before {padding-top: 3/10 * 100%;  }
+
+
+//  BACKGROUNDS
+.bg-1 {
+  // background-color:$colorBackgroundPrimary;
+}
+.bg-2 {
+  // background-color:$colorBackgroundSecondary;
+}
+.bg-3 {
+  // background-color:$colorBackgroundTernary;
+}
+.bg-4 {
+  background-color:$colorLink;
+}
+.bg-5 {
+  // background-color:$colorBg5;
+}
+
+// .bg-gradient {
+//   background-color: $colorBackgroundSecondary;
+//   background-image: linear-gradient(to top, $colorBackgroundSecondary 0%, #fafafa 100%);
+// }
+// .bg-gradient-inverted {
+//   background-color: $colorBackgroundSecondary;
+//   background-image: linear-gradient(180deg, $colorBackgroundSecondary 0%, #fafafa 100%);
+// }
+
+
+body {
+  font-size: $baseFontSize;
+  font-family: $baseFontFamily;
+  color: $colorPrimary;
+  background-color: $color-pink;
+  overflow-x: hidden;
+  font-weight: 300;
+}
+
+.color-primary {
+  // color:$colorPrimary !important;
+}
+.color-secondary {
+  // color:$colorSecondary;
+}
+.color-ternary {
+  // color:$colorTernary;
+}
+.color-inherit {
+  color: inherit;
+}
+.color-bg-primary {
+  // color: $colorBackgroundPrimary;
+}
+.color-link {
+  color: $colorLink;
+}
+
+
+// positioning
+.ta-left { 
+	text-align: left;
+}
+
+.ta-right {
+	text-align: right;
+}
+
+.ta-center {
+	text-align: center;
+}
+
+.clear-both {
+	clear:both;
+}
+
+.fl-left {
+	float: left;
+}
+
+.fl-right {
+	float: right;
+}
+
+.cf {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+
+    *zoom: 1;
+}
+
+
+.pos-c {
+  display: block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.pos-r {
+	position: relative;
+}
+
+.pos-a {
+	position: absolute;
+}
+
+
+
+// type
+.smaller {
+  font-size: smaller;
+}
+
+.larger {
+  font-size: larger;
+}
+
+
