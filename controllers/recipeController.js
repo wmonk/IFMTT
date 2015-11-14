@@ -1,6 +1,11 @@
 module.exports = {
-  isGreaterThan: function(transaction, arguments) {
-  	console.log(transaction.amount, arguments.amount)
-  	return transaction.amount > arguments.amount
-  }
+
+	isGreaterThan: function(transaction, arguments) {
+		return (transaction.amount*-1) > arguments.amount
+	},
+
+	isLessThan: function(transaction, arguments) {
+		return (transaction.amount*-1) < arguments.amount
+	}
+
 }
