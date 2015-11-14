@@ -7,10 +7,10 @@ mdb.connect(url)
         db = innerDb;
     });
 
-exports.getUser = function (transaction) {
+exports.getUser = function (id) {
     return db.collection('users')
         .then(function (users) {
-            return users.findOne({ _id: transaction.account_id })
+            return users.findOne({ _id: id })
         })
         .then(function (recipes) {
             return recipes;
