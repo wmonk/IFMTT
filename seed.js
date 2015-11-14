@@ -28,6 +28,7 @@ md.connect('mongodb://localhost:27017/ifmtt')
                     }
                 }]
             },{
+                name: 'Stop spending money',
                 logic: [{
                     name: 'greaterThan',
                     args: {
@@ -63,4 +64,7 @@ md.connect('mongodb://localhost:27017/ifmtt')
     })
     .then(function () {
         console.log('Done!');
-    });
+    })
+    .catch(function (err) {
+        console.log(err)
+    })
