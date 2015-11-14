@@ -3,9 +3,19 @@ var bodyParser = require('body-parser')
 require('dotenv').load();
 var app = express();
 
+app.use(bodyParser.json())
+
 app.get('/', function (req, res) {
     res.send('Hey!');
 });
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    next()
+})
+
+require('./routes')(app)
 
 app.listen(3000, function (err) {
     if (err) {
