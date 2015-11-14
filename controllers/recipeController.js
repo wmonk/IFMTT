@@ -9,9 +9,7 @@ module.exports = {
 
 		db.getUser(req.params.userId)
             .then(function (user) {
-				res.json({
-					recipes: user.recipes
-				})
+                res.locals.data = user.recipes
             })
 	},
 
@@ -26,7 +24,8 @@ module.exports = {
         db.getUser(req.params.userId)
             .then(function(user) {
                 var recipe = user.recipes.filter(recipe => req.params.recipe === esc(recipe.name))[0]
-                res.json({recipe})
+                res.locals.data = recipe
+                next()
     		})
     }
 }
