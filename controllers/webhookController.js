@@ -1,22 +1,22 @@
-var triggers = require('./recipeController')
+var recipes = require('./recipeController')
+var db = require('../db');
 
 module.exports = {
+    query: function (req, res, next) {
+        var data = req.body.data;
 
-	query: function(req, res, next) {
-		// @TODO: check `isLoad: false`
-		const data = req.body.data
+        db.getUser(data)
+            .then(function (user) {
+                user.recipes.forEach(function (recipe) {
+                    recipe.logic.forEach(function (logic) {
+                        var isGood = recipes[logic.name](data, logic.args);
 
-		// const triggers = userController.getTriggers()
-		const userTriggers = [
-			{name: 'isGreaterThan', args: {amount: 20}},
-			{name: 'isLessThan', args: {amount: 200}},
-		]
-
-		const triggersMatched = userTriggers.every(trigger => {
-			return triggers[trigger.name](data, trigger.args)
-		})
-
-		console.log('triggersMatched:', triggersMatched)
-		next()
-	}
+                        console.log(logic.name, 'is', isGood);
+                    })
+                })
+            })
+            .catch(function (e) {
+                console.log(e);
+            });
+    }
 }

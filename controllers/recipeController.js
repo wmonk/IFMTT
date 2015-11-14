@@ -1,11 +1,11 @@
 module.exports = {
 
-	isGreaterThan: function(transaction, arguments) {
-		return (transaction.amount*-1) > arguments.amount
-	},
+    greaterThan: function (transaction, arguments) {
+        return (-1 * parseInt(transaction.amount, 10)) > arguments.amount
+    },
 
-	isLessThan: function(transaction, arguments) {
-		return (transaction.amount*-1) < arguments.amount
-	}
+    lessThan: function (transaction, arguments) {
+        return (-1 * parseInt(transaction.amount, 10)) < arguments.amount
+    },
 
 }
