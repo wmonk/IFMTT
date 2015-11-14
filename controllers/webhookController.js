@@ -1,15 +1,22 @@
-var recipes = require('./recipeController')
+var triggers = require('./recipeController')
 
 module.exports = {
 
 	query: function(req, res, next) {
-		var data = req.body.data
-
-		var args = {
-			amount: 20
-		}
 		// @TODO: check `isLoad: false`
-		recipes['isGreaterThan'](data, args)
+		const data = req.body.data
+
+		// const triggers = userController.getTriggers()
+		const userTriggers = [
+			{name: 'isGreaterThan', args: {amount: 20}},
+			{name: 'isLessThan', args: {amount: 200}},
+		]
+
+		const triggersMatched = userTriggers.every(trigger => {
+			return triggers[trigger.name](data, trigger.args)
+		})
+
+		console.log('triggersMatched:', triggersMatched)
 		next()
 	}
 }
