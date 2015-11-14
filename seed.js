@@ -26,6 +26,37 @@ md.connect('mongodb://localhost:27017/ifmtt')
                         text: 'Naughty, naughty! You\'re spending a lot of money!!'
                     }
                 }]
+            },{
+                logic: [{
+                    name: 'greaterThan',
+                    args: {
+                        amount: 10
+                    }
+                }, {
+                    name: 'before',
+                    args: {
+                        hours: 20,
+                        minutes: 0
+                    }
+                }, {
+                    name: 'after',
+                    args: {
+                        hours: 13,
+                        minutes: 0
+                    }
+                }],
+                action: [{
+                    name: 'console',
+                    args: {
+                        text: 'Hey, stop spending money so late at night!!'
+                    }
+                },{
+                    name: 'sms',
+                    args: {
+                        phone_number: '+447780855647',
+                        text: 'Hey, stop spending money so late at night!!'
+                    }
+                }]
             }]
         });
     })
