@@ -19,6 +19,7 @@
   "homepage": "https://github.com/wmonk/IFMTT#readme",
   "dependencies": {
     "body-parser": "^1.14.1",
+    "dotenv": "^1.2.0",
     "express": "^4.13.3"
   }
 }
