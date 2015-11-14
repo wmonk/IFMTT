@@ -37,6 +37,7 @@ gulp.task('styles', function() {
 var bundleErrHandler = function(err) {
 	gp.util.log(err.toString())
 	gp.notify.onError('Error: <%= error.message %>')
+	console.log(err.stack);
 	deploy ? process.exit(1) : this.end()
 }
 
