@@ -48,15 +48,24 @@ md.connect('mongodb://localhost:27017/ifmtt')
                     }
                 }],
                 action: [{
-                    name: 'console',
-                    args: {
-                        text: 'Hey, stop spending money so late at night!!'
-                    }
-                },{
                     name: 'sms',
                     args: {
                         phone_number: '+447780855647',
                         text: 'Hey, stop spending money so late at night!!'
+                    }
+                }]
+            },{
+                name: 'Log small transactions',
+                logic: [{
+                    name: 'lessThan',
+                    args: {
+                        amount: '20'
+                    }
+                }],
+                action: [{
+                    name: 'console',
+                    args: {
+                        text: 'Hey! You just spent {{amount}} at {{description}}!'
                     }
                 }]
             }]
