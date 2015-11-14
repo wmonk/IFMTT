@@ -14,8 +14,8 @@ var deploy = false
 	, watching = false
 
 const jsFile = 'main.js'
-	, sourceDir = `${__dirname}/app/src`
-	, publicDir = `${__dirname}/app/public`
+	, sourceDir = `${__dirname}/client/src`
+	, publicDir = `${__dirname}/client/public`
 	, proxy = 'context.dev'
 
 gulp.task('assets', ['styles', 'scripts', 'media'])
@@ -23,17 +23,14 @@ gulp.task('assets', ['styles', 'scripts', 'media'])
 gulp.task('media', () => gulp.src([`${sourceDir}/{images,fonts,admin}/**/*`]).pipe(gulp.dest(publicDir)))
 
 gulp.task('styles', function() {
-	return gulp.src('app/src/styles/main.scss')
+	return gulp.src(sourceDir + '/scss/main.scss')
 		.pipe(gp.plumber({errorHandler: gp.notify.onError('Error: <%= error.message %>')}))
 		.pipe(gp.sass({
-			errLogToConsole: true,
-			includePaths: require('node-neat').includePaths,
+			errLogToConsole: true
 		}))
 		.pipe(gp.if(!deploy, gp.sourcemaps.init({loadMaps: true})))
 		.pipe(gp.autoprefixer())
 		.pipe(gp.if(deploy, gp.minifyCss()))
-		.pipe(gp.if(!deploy, gp.sourcemaps.write('.')))
-		.pipe(gp.if(!deploy, browserSync.stream({match: '**/*.css'})))
 		.pipe(gulp.dest(`${publicDir}/styles`))
 })
 
