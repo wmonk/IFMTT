@@ -7,13 +7,13 @@ module.exports = {
 
         db.getUser(data)
             .then(function (user) {
-                user.recipes.forEach(function (recipe) {
-                    recipe.logic.forEach(function (logic) {
-                        var isGood = recipes[logic.name](data, logic.args);
+                var isOK = user.recipes.reduce(function (good, recipe) {
+                    return recipe.logic.reduce(function (ok, logic) {
+                        return recipes[logic.name](data, logic.args);
+                    }, good)
+                }, false);
 
-                        console.log(logic.name, 'is', isGood);
-                    })
-                })
+                console.log('The user is', isOK);
             })
             .catch(function (e) {
                 console.log(e);
