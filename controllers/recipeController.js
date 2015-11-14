@@ -15,9 +15,25 @@ module.exports = {
 	},
 
     post: function (req, res, next) {
-        db.getUser(req.params.userId)
-            .then(function (user) {
-                console.log(user)
+        db.getUserCollection()
+            .then(users => {
+                console.log('users', users)
+                return users.update({
+                    _id: req.params.userId
+                }, {
+                    $push: {
+                        recipes: req.body
+                    }
+                })
+            })
+            .then(function() {
+                res.locals.data = {}
+            })
+            .catch(function(err) {
+                console.log(err)
+            })
+            .finally(function() {
+                next()
             })
     },
 

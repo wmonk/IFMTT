@@ -16,3 +16,7 @@ exports.getUser = function (id) {
             return recipes;
         });
 }
+
+exports.getUserCollection = function (id) {
+    return db.collection('users')
+}
