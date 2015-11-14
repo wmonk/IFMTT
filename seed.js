@@ -8,6 +8,7 @@ md.connect('mongodb://localhost:27017/ifmtt')
         return users.insert({
             _id: process.argv[2],
             recipes: [{
+                name: 'Greater than console',
                 logic: [{
                     name: 'greaterThan',
                     args: {
