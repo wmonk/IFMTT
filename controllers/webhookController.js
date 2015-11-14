@@ -1,4 +1,5 @@
-var recipes = require('./recipeController')
+var triggers = require('./recipeController')
+// var actions = require('./actionController')
 var db = require('../db');
 
 module.exports = {
@@ -7,13 +8,13 @@ module.exports = {
 
         db.getUser(data)
             .then(function (user) {
-                var isOK = user.recipes.reduce(function (good, recipe) {
-                    return recipe.logic.reduce(function (ok, logic) {
-                        return recipes[logic.name](data, logic.args);
-                    }, good)
-                }, false);
+                user.recipes.forEach(function (recipe) {
+                	const triggersMatched = recipe.logic.every(trigger => {
+						return triggers[trigger.name](data, trigger.args)
+					})
 
-                console.log('The user is', isOK);
+					// if (triggersMatched) actions[recipe.action.name](data, trigger.args, action)
+                })
             })
             .catch(function (e) {
                 console.log(e);
