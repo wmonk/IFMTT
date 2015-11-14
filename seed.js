@@ -22,7 +22,7 @@ md.connect('mongodb://localhost:27017/ifmtt')
                 },{
                     name: 'sms',
                     args: {
-                        phone_number: '+7780855647',
+                        phone_number: '+447780855647',
                         text: 'Naughty, naughty! You\'re spending a lot of money!!'
                     }
                 }]
