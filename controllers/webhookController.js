@@ -1,4 +1,4 @@
-var triggers = require('./recipeController')
+var triggers = require('./triggerController')
 var actions = require('./actionController')
 var db = require('../db');
 
