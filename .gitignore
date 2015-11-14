@@ -29,5 +29,5 @@ build/Release
 node_modules
 bower_components
 
-*.css
+client/public/styles/main.css
 
