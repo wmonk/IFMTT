@@ -1,0 +1,14 @@
+@mixin breakpoint($breakpoint) {
+
+   @if $breakpoint == "MOBILE-port--max" {
+       @media (max-width:320px) {
+           @content;
+       }
+   }
+
+   @else if $breakpoint == "MOBILE-land--max" {
+       @media (max-width:480px) {
+           @content;
+       }
+   }
+}

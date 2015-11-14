@@ -3,11 +3,8 @@ var bodyParser = require('body-parser')
 require('dotenv').load();
 var app = express();
 
+app.use(express.static(__dirname + '/client/public'));
 app.use(bodyParser.json())
-
-app.get('/', function (req, res) {
-    res.send('Hey!');
-});
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*")

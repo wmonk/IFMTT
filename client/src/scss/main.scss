@@ -1,6 +1,10 @@
-// DEPENDENCIES 
+// DEPENDENCIES
 @import 'bower_components/susy/sass/_susy.scss';
 @import 'vendors/normalize.scss';
 
 // BASE
 @import 'base/base.scss';
+
+body {
+    background: #f04eca !important;
+}

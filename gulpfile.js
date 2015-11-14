@@ -1,4 +1,3 @@
-
 var browserify = require('browserify')
 	, argv = require('yargs').argv
 	, buffer = require('vinyl-buffer')
@@ -80,7 +79,7 @@ gulp.task('default', function(callback) {
 
 	watching = true
 
-	gulp.watch(`${sourceDir}/styles/**/*.scss`, ['styles'])
+	gulp.watch(`${sourceDir}/scss/**/*.scss`, ['styles'])
 	gulp.watch(`${sourceDir}/fonts/**/*`, ['fonts'])
 	gulp.watch(`${sourceDir}/images/**/*`, ['images'])
 
