@@ -40,7 +40,7 @@ module.exports = {
     get: function(req, res, next) {
         db.getUser(req.params.userId)
             .then(function(user) {
-                var recipe = user.recipes.filter(recipe => req.params.recipe === esc(recipe.name))[0]
+                var recipe = user.recipes.reverse().filter(recipe => req.params.recipe === esc(recipe.name))[0]
                 res.locals.data = recipe
                 next()
     		})
