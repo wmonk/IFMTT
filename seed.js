@@ -15,7 +15,10 @@ md.connect('mongodb://localhost:27017/ifmtt')
                     }
                 }],
                 action: [{
-                    name: 'console'
+                    name: 'console',
+                    args: {
+                        text: 'Naughty, naughty! You\'re spending a lot of money!!'
+                    }
                 }]
             }]
         });
