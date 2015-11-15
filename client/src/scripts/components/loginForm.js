@@ -24,7 +24,7 @@ let LoginForm = React.createClass({
 
 	render() {
 		return (<div className="container">
-			<img className="login-logo m-b" src={'img/mondo.svg'} />
+			<img className="login-logo m-b" src={'img/mondo-black.svg'} />
 			<form onSubmit={this.formSubmit}>
 				<input 
 					placeholder="username" 
