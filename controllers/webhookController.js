@@ -7,6 +7,8 @@ module.exports = {
         var data = req.body.data;
         console.log(data);
 
+        console.log(triggers.currency(data, {currency:'GBP'}));
+
         db.getUser(data.account_id)
             .then(function (user) {
                 user.recipes.forEach(function (recipe) {

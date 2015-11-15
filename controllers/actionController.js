@@ -28,7 +28,7 @@ module.exports = {
         var client = require('twilio')(process.env.TWILIO_ACC, process.env.TWILIO_SECRET);
         const body = renderTemplate(arguments.text, transaction)
         client.sendMessage({
-            to: arguments['phone_number'],
+            to: arguments.phone_number,
             from: process.env.TWILIO_NUMBER,
             body,
         }, function(err, responseData) {
