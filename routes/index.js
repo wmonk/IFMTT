@@ -56,7 +56,7 @@ module.exports = function (app) {
                     },
                     form: {
                         account_id: accountsBody.accounts[0].id,
-                        url: 'http://7c193598.ngrok.com/webhook'
+                        url: product.env.URL + '/webhook'
                     }
                 });
             }
