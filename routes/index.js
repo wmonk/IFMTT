@@ -65,11 +65,13 @@ module.exports = function (app) {
         })
         .then((webhooksBody) => {
             if (webhooksBody.recipes) {
-                res.cookie('access_token', webhooksBody.access_token);
-                res.cookie('account_id', accountsBody.accounts[0].id);
-                return res.json({
-                    message: 'User already created!'
-                });
+                res.cookie('access_token', oauthBody.access_token);
+                res.cookie('account_id', webhooksBody._id);
+                return db
+                    .updateUser(webhooksBody._id, Object.assign({}, webhooksBody, oauthBody))
+                    .then(() => res.json({
+                        message: 'User already created!'
+                    }));
             }
 
             var userObj = Object.assign({
@@ -86,6 +88,7 @@ module.exports = function (app) {
                 }));
         })
         .catch((err) => {
+            console.log(err.stack);
             res.json(err);
         });
     })

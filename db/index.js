@@ -20,7 +20,14 @@ exports.getUserRecipes = function (id) {
 exports.getUser = function (id) {
     return db.collection('users')
         .then(function (users) {
-            return users.findOne({ _id: id })
+            return users.findOne({ _id: id });
+        });
+}
+
+exports.updateUser = function (id, data) {
+    return db.collection('users')
+        .then(function (users) {
+            return users.update({ _id: id }, data);
         });
 }
 
