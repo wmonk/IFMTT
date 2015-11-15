@@ -1,16 +1,17 @@
 import React from 'react';
 import { render } from 'react-dom';
 import LoginForm from './components/loginForm';
+import Header from './components/header';
 
 let App = React.createClass({
 	displayName: 'App',
 
 	render() {
-		if (!(document.cookie.includes('account_id') && document.cookie.includes('access_token'))) {
-			return (<LoginForm />)
-		}
+		var loggedIn = (document.cookie.includes('account_id') && document.cookie.includes('access_token'));
 
-		return (<div>Do some cool shit!</div>);
+		return (<div>{loggedIn ? 
+			<Header />
+		: <LoginForm />}</div>);
 	}
 })
 

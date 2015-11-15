@@ -24,8 +24,8 @@ $color-pink: #E64B5F;
 $color-grey: #F1F1F1;
 
 // type
-$baseFontFamily: georgia, serif;
-$secondaryFontFamily: Helvetica, Arial, sans-serif;
+$baseFontFamily: Helvetica, Arial, sans-serif;
+$secondaryFontFamily: georgia, serif;
 
 $colorLink: $color-pink;
 
@@ -33,6 +33,8 @@ $borderStandard: 1px solid $color-blue;
 
 * {
   box-sizing:border-box;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -72,6 +74,10 @@ textarea {
     border: 2px solid $color-pink;
 
   }
+}
+
+img {
+  max-width: 100%;
 }
 
 @include placeholder() {
@@ -118,6 +124,10 @@ textarea {
   .c-#{$i}-05 {
     width: calc((99.5% -  #{($baseLength/2)} * #{($gridColumnsNumber/$i - 1)}) * #{($i / $gridColumnsNumber)});
   }
+}
+
+.c-last {
+  margin-right: 0 !important;
 }
 
 
@@ -364,6 +374,10 @@ textarea {
 
 .larger {
   font-size: larger;
+}
+
+.color-white {
+  color: #fff;
 }
 
 
