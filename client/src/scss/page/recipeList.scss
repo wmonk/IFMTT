@@ -27,9 +27,8 @@ $dropdownItemHeight: 2*$baseFontSize;
 		    right: -20px;
 		    top: 8px;
 		    font-size: 23px;
-		    content: '>';
+		    content: '▾';
 			display: inline-block;
-			transform: rotate(90deg);
 		}
 	}
 
@@ -51,6 +50,16 @@ $dropdownItemHeight: 2*$baseFontSize;
 			height: ($dropdownItemHeight * 3) + (2*$baseLength);
 			padding: 0.5*$baseLength;
 		}
+
+		li{
+			transition: color ease $global-transition;
+			cursor: pointer;
+			
+			&:hover {
+				color: $color-pink;
+			}
+		}
+		
 	}
 
 	input {
