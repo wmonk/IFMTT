@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/wmonk/IFMTT#readme",
   "dependencies": {
+    "bem-classnames": "^1.0.7",
     "body-parser": "^1.14.1",
     "dotenv": "^1.2.0",
     "express": "^4.13.3",

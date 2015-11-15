@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import LoginForm from './components/loginForm';
 import Header from './components/header';
+import RecipeList from './components/RecipeList.jsx'
 
 let App = React.createClass({
 	displayName: 'App',
@@ -9,9 +10,14 @@ let App = React.createClass({
 	render() {
 		var loggedIn = (document.cookie.includes('account_id') && document.cookie.includes('access_token'));
 
-		return (<div>{loggedIn ? 
-			<Header />
-		: <LoginForm />}</div>);
+		return (
+			<div>
+				{loggedIn ?
+					[<Header />, <RecipeList />]
+					:
+					<LoginForm />
+				}
+			</div>);
 	}
 })
 
