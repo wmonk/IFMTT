@@ -17,6 +17,18 @@ exports.getUser = function (id) {
         });
 }
 
+exports.createUser = function (user) {
+    return db.collection('users')
+        .then(function (users) {
+            return users.insert(Object.assign({
+                _id: user.id
+            }, user, {
+                id: undefined,
+                recipes: []
+            }));
+        })
+}
+
 exports.getUserCollection = function (id) {
     return db.collection('users')
 }

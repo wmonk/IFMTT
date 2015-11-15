@@ -1,6 +1,7 @@
 var path = require('path');
 var webhookController = require('../controllers/webhookController')
 var api = require('./api')
+var db = require('../db');
 var request = require('request-promise')
 
 module.exports = function(app) {
@@ -14,7 +15,7 @@ module.exports = function(app) {
   app.post('/login', (req, res) => {
       var username = req.body.username;
       var password = req.body.password;
-      
+
       request('https://staging-api.gmon.io/oauth2/token', {
           method: 'POST',
           json: true,
@@ -25,17 +26,17 @@ module.exports = function(app) {
               username: username,
               password: password
           }
-      }).then((parsedBody) => {
-          var accessToken = parsedBody.access_token;
-          var userId = parsedBody.user_id;
+      }).then((oauthBody) => {
+          var accessToken = oauthBody.access_token;
+          var userId = oauthBody.user_id;
           // Get the account id
           request('https://staging-api.gmon.io/accounts', {
               json: true,
               auth: {
                   bearer: accessToken
               }
-          }).then((parsedBody) => {
-              var accountId = parsedBody.accounts[0].id;
+          }).then((accountsBody) => {
+              var accountId = accountsBody.accounts[0].id;
               // Register this user for webhooks
               request('https://staging-api.gmon.io/webhooks', {
                   method: 'POST',
@@ -47,16 +48,19 @@ module.exports = function(app) {
                       account_id: accountId,
                       url: 'http://7c193598.ngrok.com/webhook'
                   }
-              }).then((parsedBody) => {
+              }).then((webhooksBody) => {
                   // TODO: save a cookie on the computer
                   // TODO: create a user entry in the database
-                  res.json(parsedBody);
+                  db
+                    .createUser(Object.assign({_id: accountId}, oauthBody, accountsBody.accounts[0], webhooksBody))
+                    .then(() => res.json({ message: 'User Created!' }))
+                    .catch(e => res.json(e));
               }).catch((err) => {
                   res.json(err);
               });
           }).catch((err) => {
               res.json(err);
-          });          
+          });
       }).catch((err) => {
           res.json(err);
       });
