@@ -19,7 +19,7 @@ const jsFile = 'main.js'
 
 gulp.task('assets', ['styles', 'scripts', 'media'])
 
-gulp.task('media', () => gulp.src([`${sourceDir}/{images,fonts,admin}/**/*`]).pipe(gulp.dest(publicDir)))
+gulp.task('media', () => gulp.src([`${sourceDir}/{img,fonts,admin}/**/*`]).pipe(gulp.dest(publicDir)))
 
 gulp.task('styles', function() {
 	return gulp.src(sourceDir + '/scss/main.scss')

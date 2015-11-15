@@ -1,3 +1,4 @@
+// QUICK BREAKPOINT
 @mixin breakpoint($breakpoint) {
 
    @if $breakpoint == "MOBILE-port--max" {
@@ -11,4 +12,33 @@
            @content;
        }
    }
+}
+
+
+// PLACEHOLDER
+@mixin placeholder() {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder { /* Firefox 18- */
+        @content;
+    }
+
+    &::-moz-placeholder {  /* Firefox 19+ */
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+}
+
+
+//BUTTON RESET
+%button-reset {
+    -webkit-appearance: none;
+    outline: none;
+    border: none;
+    background-color: transparent;
 }

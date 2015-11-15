@@ -1,6 +1,6 @@
+
 @import 'helpers';
 @import 'susy';
-
 
 /*
 
@@ -12,6 +12,7 @@ VARS
 $baseLength: 20px;
 $gridColumnsNumber: 12;
 $baseFontSize: 16px;
+$global-transition: .4s;
 
 // colours
 $colorPrimary: #333;
@@ -30,10 +31,53 @@ $colorLink: $color-pink;
 
 $borderStandard: 1px solid $color-blue;
 
-body {
-	background-color: $color-pink;
+* {
+  box-sizing:border-box;
 }
 
+body {
+  font-size: $baseFontSize;
+  font-family: $baseFontFamily;
+  color: $colorPrimary;
+  background-color: $color-grey;
+  overflow-x: hidden;
+  font-weight: 300;
+}
+
+input,
+label,
+select,
+button,
+textarea {
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 15px;
+  padding: 0;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  line-height: 1;
+  outline: none;
+
+  /* Browsers have different default form fonts */
+  font-size: $baseFontSize;
+}
+
+input,
+textarea {
+  transition: border ease-in-out $global-transition;
+
+  &:focus {
+    border: 1px solid $color-pink;
+
+  }
+}
+
+@include placeholder() {
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: $baseFontSize;
+}
 
 /* NOTES:
 
@@ -44,12 +88,6 @@ body {
 .ratio-[w]-[h] - ratio container, it requires child with ratio class
 .b-[t/b/l/r]  - standard border
 */
-
-
-* {
-  box-sizing:border-box;
-}
-
 
 .w-1, .w-2, .w-3, .w-4, .w-5, .w-6, .w-7, .w-8, .w-9, .w-10, .w-11, .w-12,
 .c-1, .c-2, .c-3, .c-4, .c-5, .c-6, .c-7, .c-8, .c-9, .c-10, .c-11, .c-12,
@@ -124,7 +162,16 @@ body {
    margin-right: 0.5*$baseLength;
 }
 
+
 // standard paddings
+.p-all-0-5 {
+  padding: 0.5*$baseLength;
+}
+
+.p-all {
+  padding: $baseLength; 
+}
+
 .p-t {
    padding-top: $baseLength;
 }
@@ -216,22 +263,6 @@ body {
 .ratio-10-3:before {padding-top: 3/10 * 100%;  }
 
 
-//  BACKGROUNDS
-.bg-1 {
-  // background-color:$colorBackgroundPrimary;
-}
-.bg-2 {
-  // background-color:$colorBackgroundSecondary;
-}
-.bg-3 {
-  // background-color:$colorBackgroundTernary;
-}
-.bg-4 {
-  background-color:$colorLink;
-}
-.bg-5 {
-  // background-color:$colorBg5;
-}
 
 // .bg-gradient {
 //   background-color: $colorBackgroundSecondary;
@@ -242,15 +273,6 @@ body {
 //   background-image: linear-gradient(180deg, $colorBackgroundSecondary 0%, #fafafa 100%);
 // }
 
-
-body {
-  font-size: $baseFontSize;
-  font-family: $baseFontFamily;
-  color: $colorPrimary;
-  background-color: $color-pink;
-  overflow-x: hidden;
-  font-weight: 300;
-}
 
 .color-primary {
   // color:$colorPrimary !important;
@@ -327,7 +349,6 @@ body {
 }
 
 
-
 // type
 .smaller {
   font-size: smaller;
@@ -335,6 +356,21 @@ body {
 
 .larger {
   font-size: larger;
+}
+
+
+// btns
+button {
+  @extend %button-reset;
+  transition: all ease-in-out $global-transition;
+}
+
+.btn-primary {
+  background-color: $color-pink;
+
+  &:hover {
+    background-color: darken($color-pink, 5%);
+  }
 }
 
 
