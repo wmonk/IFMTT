@@ -39,5 +39,38 @@ module.exports = {
                 console.log(err);
             }
         });
-    }
+    },
+    
+    feedItem: function (transaction, arguments) {
+        var db = require('../db');
+        var request = require('request-promise')
+        db.getUser(transaction.account_id).then((user) => {
+            return request('https://staging-api.gmon.io/feed', {
+                method: 'POST',
+                json: true,
+                auth: {
+                    bearer: user.access_token
+                },
+                form: {
+                    type: 'basic',
+                    account_id: transaction.account_id,
+                    url: 'www.google.com',
+                    params: {
+                        title: arguments.title,
+                        body: arguments.body,
+                        image_url: arguments.image_url,
+                        background_color: '#EEEEEE',
+                        body_color: '#777',
+                        title_color: '#333',
+                    }
+                }
+            })
+        })        
+        .then((respo) => {
+            console.log(respo);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    },
 }
