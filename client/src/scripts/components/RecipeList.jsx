@@ -91,7 +91,11 @@ class Recipe extends Component {
 				*/}
 				If <Logic {...{logic, update}} />
 
-				send me a <u>text</u> to {' '}
+				send me a {' '}
+				<span className="Picker">
+					<a className="Picker__link">sms message</a>
+				</span>
+				{' '} to {' '}
 				<input type="tel" value="+447805284648" className="inputx" />, saying:
 				<textarea className="textareax" value="Hey! You just spent {{amount}} at {{description}}" />
 				{/*

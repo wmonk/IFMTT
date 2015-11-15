@@ -20,7 +20,7 @@ $dropdownItemHeight: 2*$baseFontSize;
 		text-decoration: none;
 		margin-right: 20px;
 		position: relative;
-		// color: #E64B5F!important;
+		color: #E64B5F!important;
 
 		&:after {
 			//@TODO chevron here
@@ -65,7 +65,7 @@ $dropdownItemHeight: 2*$baseFontSize;
 
 	input {
 		display: inline;
-		max-width: 4rem!important;
+		max-width: 4.5rem!important;
 	}
 
 	select,

@@ -181,12 +181,15 @@ export default class Logic extends Component {
 						<span key={index}>
 							<LogicItem {...{name, args, type, index, changeType, changeFilterArgs, changeFilterType}} />
 
-							{(len > 0 && !last) ? 'and ' : 'then '}
+							{last ?
+								<a href="#" className="newbtn" onClick={newFilter}></a>
+							: null}
+
+							{(len > 0 && !last) ? 'and ' : ' then '}
 
 						</span>
 					)
 				})}
-				<a href="#" className="newbtn" onClick={newFilter}></a>
 			</span>
 		)
 	}
