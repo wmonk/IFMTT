@@ -65,6 +65,14 @@ class Recipe extends Component {
 	saveRecipe = () => {
 		const json = JSON.stringify(this.props)
 		console.log('save', json)
+		this.props.closeModal()
+	}
+
+	updateTitle = (evt) => {
+		console.log(evt.target.value)
+		this.update({
+			name: evt.target.value
+		})
 	}
 
 	render() {
@@ -72,8 +80,8 @@ class Recipe extends Component {
 		const {update, saveRecipe} = this
 
 		return (
-			<div className="m-b recipe-item">
-				<h2>{name}</h2>
+			<div className="m-b recipe-item" >
+				<input type="text" value={name} onChange={this.updateTitle} className="imanidiot"/>
 				{/*<input value={name} type="text" />*/}
 
 				{/*
@@ -169,7 +177,7 @@ export default class RecipeList extends Component {
 
 							<a className="modal__close" onClick={this.closeModal}>close</a>
 
-							<Recipe {...xx} updateShit={this.updateShit} />
+							<Recipe {...xx} updateShit={this.updateShit} closeModal={this.closeModal}/>
 						</div>
 					</div>
 				: null}

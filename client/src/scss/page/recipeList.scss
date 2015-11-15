@@ -20,6 +20,7 @@ $dropdownItemHeight: 2*$baseFontSize;
 		text-decoration: none;
 		margin-right: 20px;
 		position: relative;
+		// color: #E64B5F!important;
 
 		&:after {
 			//@TODO chevron here
@@ -127,7 +128,7 @@ $dropdownItemHeight: 2*$baseFontSize;
 }
 
 .inputx {
-	display: inline;
+		display: inline;
 		max-width: 9rem!important;
 		// background: transparent;
 		border: none;
@@ -147,7 +148,7 @@ $dropdownItemHeight: 2*$baseFontSize;
 		margin-top: 1rem;
 	}
 
-	textarea, input {
+	textarea, input:not(.imanidiot) {
 		font-family: monospace;
 	}
 
@@ -185,4 +186,12 @@ $cardbg: #fefefe;
 	h2 {
 		margin: 0;
 	}
+}
+
+.imanidiot {
+	display: block;
+	font-size: 1.5em;
+	font-weight: bold;
+	width: 100%;
+	padding: .3rem 0;
 }
