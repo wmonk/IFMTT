@@ -90,6 +90,13 @@ textarea {
 .b-[t/b/l/r]  - standard border
 */
 
+.container {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
 .w-1, .w-2, .w-3, .w-4, .w-5, .w-6, .w-7, .w-8, .w-9, .w-10, .w-11, .w-12,
 .c-1, .c-2, .c-3, .c-4, .c-5, .c-6, .c-7, .c-8, .c-9, .c-10, .c-11, .c-12,
 .c-1-05, .c-2-05, .c-3-05, .c-4-05, .c-5-05, .c-6-05, .c-7-05, .c-8-05, .c-9-05, .c-10-05, .c-11-05, .c-12-05 {
@@ -370,7 +377,7 @@ button {
   background-color: $color-pink;
 
   &:hover {
-    background-color: darken($color-pink, 5%);
+    background-color: darken($color-pink, 10%);
   }
 }
 
