@@ -56,7 +56,7 @@ module.exports = function (app) {
                     },
                     form: {
                         account_id: accountsBody.accounts[0].id,
-                        url: product.env.URL + '/webhook'
+                        url: process.env.URL + '/webhook'
                     }
                 });
             }
