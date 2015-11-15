@@ -48,6 +48,8 @@ module.exports = function(app) {
                       url: 'http://7c193598.ngrok.com/webhook'
                   }
               }).then((parsedBody) => {
+                  // TODO: save a cookie on the computer
+                  // TODO: create a user entry in the database
                   res.json(parsedBody);
               }).catch((err) => {
                   res.json(err);

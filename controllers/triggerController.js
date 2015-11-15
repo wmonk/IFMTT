@@ -13,13 +13,17 @@ module.exports = {
     before: function (transaction, arguments) {
         var date = moment(transaction.created);
         return date.hour() < arguments['hours'] 
-            || (date.hour() == arguments['hours'] && date.minute() < arguments['minutes']);
+            || (date.hour() == arguments['hours'] && date.minute() < arguments.minutes);
     },
 
     after: function (transaction, arguments) {
         var date = moment(transaction.created);
         return date.hour() > arguments['hours'] 
-            || (date.hour() == arguments['hours'] && date.minute() > arguments['minutes']);
-    }
+            || (date.hour() == arguments['hours'] && date.minute() > arguments.minutes);
+    },
+    
+    station: function (transaction, arguments) {
+        return transaction.merchant.name == 'Transport For London' && transaction.merchant.address.city.toLowerCase() == arguments.station.toLowerCase();
+    },
 
 }

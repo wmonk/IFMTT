@@ -5,6 +5,7 @@ var db = require('../db');
 module.exports = {
     query: function (req, res, next) {
         var data = req.body.data;
+        console.log(data);
 
         db.getUser(data.account_id)
             .then(function (user) {
