@@ -30,7 +30,6 @@ module.exports = function (app) {
             }
         })
         .then((innerOauthBody) => {
-            console.log('innerOauthBody');
             oauthBody = innerOauthBody;
 
             // Get the account id
@@ -42,33 +41,47 @@ module.exports = function (app) {
             });
         })
         .then((innerAccountsBody) => {
-            console.log('innerAccountsBody');
             accountsBody = innerAccountsBody
 
-            // Register this user for webhooks
-            return request('https://staging-api.gmon.io/webhooks', {
-                method: 'POST',
-                json: true,
-                auth: {
-                    bearer: oauthBody.access_token
-                },
-                form: {
-                    account_id: accountsBody.accounts[0].id,
-                    url: 'http://7c193598.ngrok.com/webhook'
-                }
-            });
+            return db.getUser(accountsBody.accounts[0].id)
+        })
+        .then(function (user) {
+            if (!user) {
+                // Register this user for webhooks
+                return request('https://staging-api.gmon.io/webhooks', {
+                    method: 'POST',
+                    json: true,
+                    auth: {
+                        bearer: oauthBody.access_token
+                    },
+                    form: {
+                        account_id: accountsBody.accounts[0].id,
+                        url: 'http://7c193598.ngrok.com/webhook'
+                    }
+                });
+            }
+
+            return user;
         })
         .then((webhooksBody) => {
-            console.log('webhooksBody');
+            if (webhooksBody.recipes) {
+                res.cookie('access_token', webhooksBody.access_token);
+                return res.json({
+                    message: 'User already created!'
+                });
+            }
+
+            var userObj = Object.assign({
+               _id: accountsBody.accounts[0].id
+            }, oauthBody, accountsBody.accounts[0], webhooksBody);
+
+            res.cookie('access_token', oauthBody.access_token);
             // TODO: save a cookie on the computer
-            // TODO: create a user entry in the database
             return db
-                .createUser(Object.assign({
-                    _id: accountsBody.accounts[0].id
-                }, oauthBody, accountsBody.accounts[0], webhooksBody))
+                .createUser(userObj)
                 .then(() => res.json({
                     message: 'User Created!'
-                }))
+                }));
         })
         .catch((err) => {
             res.json(err);

@@ -7,13 +7,20 @@ mdb.connect(url)
         db = innerDb;
     });
 
-exports.getUser = function (id) {
+exports.getUserRecipes = function (id) {
     return db.collection('users')
         .then(function (users) {
             return users.findOne({ _id: id })
         })
         .then(function (recipes) {
             return recipes;
+        });
+}
+
+exports.getUser = function (id) {
+    return db.collection('users')
+        .then(function (users) {
+            return users.findOne({ _id: id })
         });
 }
 
