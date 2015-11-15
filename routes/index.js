@@ -1,8 +1,8 @@
 var path = require('path');
-var webhookController = require('../controllers/webhookController')
-var api = require('./api')
+var webhookController = require('../controllers/webhookController');
+var api = require('./api');
 var db = require('../db');
-var request = require('request-promise')
+var request = require('request-promise');
 
 module.exports = function (app) {
 

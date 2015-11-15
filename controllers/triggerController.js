@@ -10,6 +10,10 @@ module.exports = {
         return (-1 * parseInt(transaction.amount, 10)) < arguments.amount;
     },
     
+    currency: function (transaction, arguments) {
+        return transaction.currency == arguments.currency;
+    },
+    
     before: function (transaction, arguments) {
         var date = moment(transaction.created);
         return date.hour() < arguments['hours'] 
