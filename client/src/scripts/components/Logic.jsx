@@ -105,22 +105,24 @@ export default class Logic extends Component {
 	constructor(props) {
 		super(props)
 		const {logic} = this.props
-		this.state = {
-			logic,
-		}
+
+		console.log('===', this.props)
+
+		// this.state = {
+		// 	logic,
+		// }
 	}
 
 	changeType = (type, index) => {
-		const {logic} = this.state
+		const {logic} = this.props
 		let newItem = logic.slice()
 		newItem[index] = {
 			name: type,
 			args: logicTypes[type].defaultArgs,
 		}
 
-		this.setState({
-			logic: newItem
-		})
+		// this.setState({logic: newItem})
+		this.props.update({logic: newItem})
 
 		// if (!hasAllowedLogic) {
 		// 	const newLogic = {
@@ -136,7 +138,7 @@ export default class Logic extends Component {
 	}
 
 	newFilter = () => {
-		const {logic} = this.state
+		const {logic} = this.props
 		let updatedLogic = logic.slice()
 		const firstLogicKey = Object.keys(logicTypes)[0]
 		const newItem = logicTypes[firstLogicKey]
@@ -146,19 +148,29 @@ export default class Logic extends Component {
 		})
 
 		// Replace w/ props callback to LogicList
-		this.setState({logic: updatedLogic})
+		// this.setState({logic: updatedLogic})
+		this.props.update({logic: updatedLogic})
+	}
+
+	changeFilterArgs = (args, index) => {
+		const {logic} = this.props
+		let updatedLogic = logic.slice()
+		updatedLogic[index].args = args
+		// this.setState({logic: updatedLogic})
+		this.props.update({logic: updatedLogic})
 	}
 
 	changeFilterType = (type, index) => {
-		const {logic} = this.state
+		const {logic} = this.props
 		let updatedLogic = logic.slice()
 		updatedLogic[index].name = type
-		this.setState({logic: updatedLogic})
+		// this.setState({logic: updatedLogic})
+		this.props.update({logic: updatedLogic})
 	}
 
 	render() {
-		const {type, logic} = this.state
-		const {changeType, changeFilterType, newFilter} = this
+		const {type, logic} = this.props
+		const {changeType, changeFilterArgs, changeFilterType, newFilter} = this
 
 		return (
 			<span>
@@ -167,16 +179,14 @@ export default class Logic extends Component {
 					const last = index === len-1
 					return (
 						<span key={index}>
-							<LogicItem {...{name, args, type, index, changeType, changeFilterType}} />
+							<LogicItem {...{name, args, type, index, changeType, changeFilterArgs, changeFilterType}} />
 
 							{(len > 0 && !last) ? 'and ' : 'then '}
 
-							{last ?
-								<a href="#" className="newbtn" onClick={newFilter}></a>
-							: null}
 						</span>
 					)
 				})}
+				<a href="#" className="newbtn" onClick={newFilter}></a>
 			</span>
 		)
 	}
