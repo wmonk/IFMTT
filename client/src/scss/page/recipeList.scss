@@ -140,3 +140,49 @@ $dropdownItemHeight: 2*$baseFontSize;
 		margin: 0;
 
 }
+
+
+.recipe-item {
+	button {
+		margin-top: 1rem;
+	}
+
+	textarea, input {
+		font-family: monospace;
+	}
+
+	textarea {
+		width: 100%!important;
+		display: block;
+		border-radius: 0;
+		font-size: 1.5em;
+		margin-top: .5rem;
+		font-family: monospace;
+		padding: .5rem;
+	}
+
+	button {
+		background: #E64B5F;
+		border-radius: .2rem;
+		padding: .5rem .7rem;
+		color: white;
+	}
+}
+
+$cardbg: #fefefe;
+
+.recipeCard {
+
+	background: $cardbg;
+    padding: 1rem 2rem;
+	margin-bottom: 1rem;
+	cursor: pointer;
+
+	&:hover {
+		background: rgba($cardbg, .8);
+	}
+
+	h2 {
+		margin: 0;
+	}
+}

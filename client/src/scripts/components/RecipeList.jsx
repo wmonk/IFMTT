@@ -10,23 +10,23 @@ import Logic from './Logic.jsx'
 
 const recipes = [
 	{
-		name: 'Greater than console log',
+		name: 'Late night warning text',
+		logic: [
+			{name: 'after', args: {hours: 20, minutes: 30}},
+		],
+		action: [{
+			name: 'sms',
+			args: {text: 'You just spent {{amount}}!'},
+		}],
+	},
+	{
+		name: 'Console log 80-150',
 		logic: [
 			{name: 'greaterThan', args: {amount: 80}},
 			{name: 'lessThan', args: {amount: 150}},
 		],
 		action: [{
 			name: 'console',
-			args: {text: 'You just spent {{amount}}!'},
-		}],
-	},
-	{
-		name: 'Text message',
-		logic: [
-			{name: 'after', args: {hours: 20, minutes: 30}},
-		],
-		action: [{
-			name: 'sms',
 			args: {text: 'You just spent {{amount}}!'},
 		}],
 	},
@@ -157,8 +157,8 @@ export default class RecipeList extends Component {
 				{recipes.map((recipe, i) => {
 					const onClick = this.setActiveRecipe.bind(null, i)
 					return (
-						<div key={i}>
-							<h2 {...{onClick}}>{recipe.name}</h2>
+						<div key={i} {...{onClick}} className="recipeCard">
+							<h2>{recipe.name}</h2>
 						</div>
 					)
 				})}
