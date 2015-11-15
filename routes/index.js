@@ -66,6 +66,7 @@ module.exports = function (app) {
         .then((webhooksBody) => {
             if (webhooksBody.recipes) {
                 res.cookie('access_token', webhooksBody.access_token);
+                res.cookie('account_id', accountsBody.accounts[0].id);
                 return res.json({
                     message: 'User already created!'
                 });
@@ -76,6 +77,7 @@ module.exports = function (app) {
             }, oauthBody, accountsBody.accounts[0], webhooksBody);
 
             res.cookie('access_token', oauthBody.access_token);
+            res.cookie('account_id', accountsBody.accounts[0].id);
             // TODO: save a cookie on the computer
             return db
                 .createUser(userObj)
