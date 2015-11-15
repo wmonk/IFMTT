@@ -13,6 +13,7 @@ $baseLength: 20px;
 $gridColumnsNumber: 12;
 $baseFontSize: 16px;
 $global-transition: .2s;
+$containerWidth: 768px;
 
 // colours
 $colorPrimary: #333;
@@ -97,9 +98,14 @@ img {
 */
 
 .container {
-    max-width: 768px;
+    max-width: $containerWidth;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 0;
+
+    @include breakpoint(small) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
 }
 
 
@@ -368,6 +374,11 @@ img {
 
 
 // type
+@for $i from 1 through 6 {
+  h#{$i} {
+    margin-top: 0;
+  }
+}
 .smaller {
   font-size: smaller;
 }
@@ -376,8 +387,24 @@ img {
   font-size: larger;
 }
 
+.fw-bold {
+  font-weight: bold;
+}
+
 .color-white {
   color: #fff;
+}
+
+a {
+    cursor: pointer;
+    
+    &:visited {
+      color: $color-pink;
+    }
+  
+    &:hover {
+      color: $color-pink;
+    }
 }
 
 

@@ -1,11 +1,12 @@
 // QUICK BREAKPOINT
 @mixin breakpoint($breakpoint) {
 
-   @if $breakpoint == "MOBILE-port--max" {
-       @media (max-width:320px) {
+   @if $breakpoint == "small" {
+       @media (max-width: 768px) {
            @content;
        }
    }
+   
 
    @else if $breakpoint == "MOBILE-land--max" {
        @media (max-width:480px) {

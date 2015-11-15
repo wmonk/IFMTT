@@ -44,7 +44,7 @@ class Recipe extends Component {
 		const {name, logic} = this.state
 
 		return (
-			<div>
+			<div className="m-b recipe-item">
 				<h2>{name}</h2>
 				{/*<input value={name} type="text" />*/}
 
@@ -61,8 +61,6 @@ class Recipe extends Component {
 					Displays appropriate input field
 					<Notification />
 				*/}
-
-				<hr />
 			</div>
 		)
 	}
@@ -71,7 +69,7 @@ class Recipe extends Component {
 export default class RecipeList extends Component {
 	render() {
 		return (
-			<div>
+			<div className="container">
 				{recipes.map((recipe, i) => <Recipe {...recipe} key={i} />)}
 			</div>
 		)

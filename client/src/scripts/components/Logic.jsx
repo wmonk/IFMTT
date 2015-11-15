@@ -172,7 +172,7 @@ export default class Logic extends Component {
 							{(len > 0 && !last) ? 'and ' : 'then '}
 
 							{last ?
-								<a href="#" className="newbtn" onClick={newFilter}>+</a>
+								<a href="#" className="newbtn" onClick={newFilter}></a>
 							: null}
 						</span>
 					)
